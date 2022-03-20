@@ -34,6 +34,7 @@ let game = () => {
     let playerSelection = prompt("Select your action").toLowerCase();
     scoreBoard.push(playRound(playerSelection, computerSelection));
   }
+
   //tally score from scoreBoard array
   for (let i = 0; i < scoreBoard.length; i++) {
     if (scoreBoard[i] == "player") {
