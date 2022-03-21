@@ -48,6 +48,7 @@ body {
 .options {
   display: flex;
   justify-content: space-between;
+  margin: 25px 0;
 }
 
 .btn {
@@ -60,11 +61,24 @@ body {
 }
 
 .btn-square {
-  width: 160px;
-  height: 160px;
+  width: 180px;
+  height: 180px;
   background-color: #ec1c23;
+}
+
+.btn:hover {
+  background-color: #f7474c;
 }
 
 .middle-btn {
   margin: 0 1.5rem;
+}
+
+.scoreBoard {
+  margin: 25px 0;
+  width: 60%;
+  font-size: 2rem;
+  display: flex;
+  font-weight: 600;
+  justify-content: space-between;
 }
