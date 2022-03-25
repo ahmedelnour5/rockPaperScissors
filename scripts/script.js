@@ -7,51 +7,51 @@ let computerPlay = () => {
   return choice;
 };
 
-//prompt player for action
+//select buttons for player choice
+let buttons = document.querySelectorAll(".btn");
 
+//select elements for updating scoreboard
+let homeScore = document.querySelector(".home-score");
+let awayScore = document.querySelector(".away-score");
+let display = document.querySelector(".score-board-display");
+
+//declare player and computer score variables
+let playerScore = 0;
+let compScore = 0;
+let playing = true;
+
+//compare player and computer selections update score of winner
 let playRound = (playerSelection, computerSelection) => {
-  let winner = "";
-  if (playerSelection === computerSelection) {
-    winner = "tie";
-  } else if (playerSelection > computerSelection) {
-    winner = "player";
-  } else {
-    winner = "computer";
-  }
-
-  return winner;
-};
-
-let game = () => {
-  let scoreBoard = [];
-  let playerCount = 0;
-  let compCount = 0;
-  let tieCount = 0;
   let result = ``;
-
-  for (let i = 0; i < 5; i++) {
-    let computerSelection = computerPlay();
-    let playerSelection = prompt("Select your action").toLowerCase();
-    scoreBoard.push(playRound(playerSelection, computerSelection));
-  }
-
-  //tally score from scoreBoard array
-  for (let i = 0; i < scoreBoard.length; i++) {
-    if (scoreBoard[i] == "player") {
-      playerCount += 1;
-    } else if (scoreBoard[i] == "computer") {
-      compCount += 1;
-    } else {
-      tieCount += 1;
-    }
-  }
-
-  if (playerCount > compCount) {
-    result = console.log(`You win! ${playerCount}-${compCount}`);
+  if (playerSelection === computerSelection) {
+    result = `Tie ${playerSelection} equals ${computerSelection}`;
+  } else if (
+    (playerSelection == "rock" && computerSelection == "scissors") ||
+    (playerSelection == "paper" && computerSelection == "rock") ||
+    (playerSelection == "scissors" && computerSelection == "paper")
+  ) {
+    result = `LFG!! ${playerSelection} beats ${computerSelection}`;
+    playerScore += 1;
+    homeScore.innerText = playerScore.toLocaleString();
   } else {
-    result = console.log(`You lose! Computer won ${compCount}-${playerCount}`);
+    result = `You Lose! ${computerSelection} beats ${playerSelection}`;
+    compScore += 1;
+    awayScore.innerText = compScore.toLocaleString();
   }
-  return result;
+  display.innerHTML = result;
+  return checkScore(playerScore, compScore);
 };
 
-game();
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    let computerSelection = computerPlay();
+    let playerSelection = button.innerHTML.toLowerCase();
+    playRound(playerSelection, computerSelection);
+  });
+});
+
+let checkScore = (playerScore, compScore) => {
+  if (playerScore == 5 || compScore == 5) {
+    display.innerText = "GAME OVER";
+  }
+};
