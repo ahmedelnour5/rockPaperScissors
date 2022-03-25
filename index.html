@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="css/styles.css" rel="stylesheet" />
     <title>Rock Paper Scissors</title>
-    <script src="/scripts/script.js" defer></script>
+    <script src="scripts/script.js" defer></script>
   </head>
   <body>
     <header class="main-header">
@@ -18,7 +18,7 @@
           <span>Choose Your Weapon</span>
         </div>
         <div class="text-container">
-          <span>First to Score 5points wins</span>
+          <span>First to Score 5 points wins</span>
         </div>
       </div>
       <div class="options">
@@ -27,15 +27,16 @@
         <button class="btn btn-square">Scissors</button>
       </div>
       <div class="scoreBoard">
-        <div class="player-container">
-          <div class="home-score"><span>Player Score</span></div>
-          <div class="score-container"></div>
+        <div class="home-container">
+          <div class="home-score-title"><span>Player Score</span></div>
+          <div class="home-score">0</div>
         </div>
-        <div class="computer-container">
-          <div class="away-score"><span>Computer Score</span></div>
-          <div class="score-container"></div>
+        <div class="away-container">
+          <div class="away-score-title"><span>Computer Score</span></div>
+          <div class="away-score">0</div>
         </div>
       </div>
+      <div class="score-board-display"></div>
     </div>
   </body>
 </html>
