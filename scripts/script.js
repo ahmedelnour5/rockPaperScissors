@@ -10,15 +10,16 @@ let computerPlay = () => {
 //select buttons for player choice
 let buttons = document.querySelectorAll(".btn");
 
-//select elements for updating scoreboard
+//player score on scoreBoard
 let homeScore = document.querySelector(".home-score");
+//computer score
 let awayScore = document.querySelector(".away-score");
+//div to display results of each round
 let display = document.querySelector(".score-board-display");
 
 //declare player and computer score variables
 let playerScore = 0;
 let compScore = 0;
-let playing = true;
 
 //compare player and computer selections update score of winner
 let playRound = (playerSelection, computerSelection) => {
@@ -51,7 +52,49 @@ buttons.forEach((button) => {
 });
 
 let checkScore = (playerScore, compScore) => {
-  if (playerScore == 5 || compScore == 5) {
-    display.innerText = "GAME OVER";
+  if (playerScore == 5) {
+    display.innerText = "YOU WIN!!";
+    gameOver();
+  } else if (compScore == 5) {
+    display.innerText = "GAME OVER YOU LOSE!";
+    gameOver();
   }
 };
+
+//select elements to hide once game over
+let header = document.querySelector(".main-header");
+let playAgainButton = document.querySelector(".play-again");
+let instructionsContainerElem = document.querySelector(".instructions");
+let scoreBoardElem = document.querySelector(".scoreBoard");
+
+let gameOver = () => {
+  //hide header
+  header.classList.add("hide");
+  //hide buttons
+  buttons.forEach((button) => {
+    button.classList.add("hide");
+  });
+
+  instructionsContainerElem.classList.add("hide");
+  playAgainButton.classList.remove("hideButton");
+  scoreBoardElem.classList.add("hide");
+  display.classList.add("hide");
+};
+
+let resetState = () => {
+  header.classList.remove("hide");
+  buttons.forEach((button) => {
+    button.classList.remove("hide");
+  });
+  instructionsContainerElem.classList.remove("hide");
+  scoreBoardElem.classList.remove("hide");
+  display.classList.remove("hide");
+  playAgainButton.classList.add("hideButton");
+  compScore = 0;
+  playerScore = 0;
+  awayScore.innerText = compScore.toLocaleString();
+  homeScore.innerText = playerScore.toLocaleString();
+  display.innerText = ``;
+};
+
+playAgainButton.addEventListener("click", resetState);
