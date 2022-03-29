@@ -82,10 +82,11 @@ let gameOver = () => {
 };
 
 let resetState = () => {
-  header.classList.remove("hide");
   buttons.forEach((button) => {
     button.classList.remove("hide");
   });
+
+  header.classList.remove("hide");
   instructionsContainerElem.classList.remove("hide");
   scoreBoardElem.classList.remove("hide");
   display.classList.remove("hide");
